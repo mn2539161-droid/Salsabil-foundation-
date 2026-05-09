@@ -20,6 +20,7 @@
         :root {
             --primary-color: #2c3e50;
             --accent-color: #27ae60;
+            --whatsapp-green: #25D366;
             --text-light: #ffffff;
             --bank-color: #34495e;
             --transition: all 0.3s ease;
@@ -31,6 +32,8 @@
             font-family: 'Hind Siliguri', sans-serif;
             background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
             min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
         /* Navigation Bar */
@@ -125,6 +128,7 @@
             margin: 50px auto;
             padding: 0 20px;
             text-align: center;
+            flex: 1;
         }
 
         .hero-title {
@@ -185,25 +189,157 @@
             color: var(--accent-color);
         }
 
-        .bank-details {
-            font-size: 14px;
-            line-height: 1.6;
-            color: #444;
+        /* Contact Form Styles */
+        .contact-form-card {
+            background: white;
+            max-width: 500px;
+            margin: 60px auto;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            text-align: left;
+            animation: fadeInUp 1s ease;
         }
 
-        .bank-details strong {
+        .contact-form-card h2 {
+            text-align: center;
             color: var(--primary-color);
+            margin-bottom: 25px;
         }
 
-        /* Animations */
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #555;
+        }
+
+        .input-group input, .input-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e1e8ed;
+            border-radius: 10px;
+            font-family: inherit;
+            transition: var(--transition);
+            box-sizing: border-box;
+        }
+
+        .input-group input:focus, .input-group textarea:focus {
+            border-color: var(--accent-color);
+            outline: none;
+            box-shadow: 0 0 8px rgba(39, 174, 96, 0.2);
+        }
+
+        .wa-btn {
+            width: 100%;
+            padding: 15px;
+            background-color: var(--whatsapp-green);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: var(--transition);
+            animation: pulse 2s infinite;
+        }
+
+        .wa-btn:hover {
+            background-color: #128C7E;
+            transform: scale(1.02);
+            animation: none;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            padding: 60px 20px 20px 20px;
+            margin-top: 50px;
+            border-top: 5px solid var(--accent-color);
+        }
+
+        .footer-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            justify-content: space-between;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .footer-section h3 {
+            color: var(--accent-color);
+            font-size: 22px;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent-color);
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #bdc3c7;
+        }
+
+        .footer-links li i {
+            color: var(--accent-color);
+        }
+
+        .copyright-bar {
+            text-align: center;
+            margin-top: 50px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 14px;
+            color: #7f8c8d;
+        }
+
+        /* Keyframes */
         @keyframes fadeInDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes scaleIn { from { transform: scale(0.9); opacity: 0; } to { transform: scale(1); opacity: 1; } }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
 
         @media (max-width: 600px) {
             .hero-title { font-size: 28px; }
             .info-card { min-width: 100%; }
+            .contact-form-card { padding: 25px; }
         }
     </style>
 </head>
@@ -271,9 +407,80 @@
             </div>
         </div>
 
-        <p style="margin-top: 40px; color: #555;">আপনার যেকোনো দান বা সহযোগিতার জন্য আমরা কৃতজ্ঞ।</p>
+        <div class="contact-form-card">
+            <h2>সরাসরি যোগাযোগ করুন</h2>
+            <div class="input-group">
+                <label for="userName"><i class="fas fa-user"></i> আপনার নাম</label>
+                <input type="text" id="userName" placeholder="আপনার নাম লিখুন...">
+            </div>
+            <div class="input-group">
+                <label for="userMsg"><i class="fas fa-comment-dots"></i> আপনার মেসেজ</label>
+                <textarea id="userMsg" rows="4" placeholder="আপনি কী বলতে চান?"></textarea>
+            </div>
+            <button class="wa-btn" onclick="sendWhatsApp()">
+                <i class="fab fa-whatsapp"></i> হোয়াটসঅ্যাপে পাঠান
+            </button>
+        </div>
+
+        <p style="margin-top: 20px; color: #555;">আপনার যেকোনো দান বা সহযোগিতার জন্য আমরা কৃতজ্ঞ।</p>
     </div>
 
-</body>
-</html>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>আমাদের সম্পর্কে</h3>
+                <p>
+                    <strong>সালসাবিল ফাউন্ডেশন</strong> একটি অলাভজনক সেবামূলক প্রতিষ্ঠান। আমাদের মূল লক্ষ্য হলো সমাজের সুবিধাবঞ্চিত এবং অসহায় মানুষের পাশে দাঁড়িয়ে একটি সুন্দর ও বৈষম্যহীন সমাজ গড়ে তোলা।
+                </p>
+            </div>
 
+            <div class="footer-section">
+                <h3>আমাদের লক্ষ্য</h3>
+                <ul class="footer-links">
+                    <li><i class="fas fa-check-circle"></i> অসহায়দের মাঝে খাদ্য বিতরণ।</li>
+                    <li><i class="fas fa-check-circle"></i> শীতবস্ত্র ও কম্বল প্রদান।</li>
+                    <li><i class="fas fa-check-circle"></i> দরিদ্র শিক্ষার্থীদের শিক্ষা সহায়তা।</li>
+                            <li><i class="fas fa-check-circle"></i> দুই ঈদে অসহায়দের মাঝে নতুন পোশাক ও ঈদ উপহার প্রদান।</li>
+        <li><i class="fas fa-check-circle"></i>অসুস্থ ও সুবিধাবঞ্চিত মানুষের চিকিৎসা সেবায় সহায়তা।</li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>যোগাযোগ</h3>
+                <ul class="footer-links">
+                    <li><i class="fas fa-map-marker-alt"></i>জেলা ঠাকুরগাঁও - ৫১০০</li>
+                    <li><i class="fas fa-envelope"></i> salsabilfoundationssf@gmail.com</li>
+                    <li><i class="fas fa-phone-alt"></i> +8801760-908482</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="copyright-bar">
+            <p>&copy; ২০২৬ সালসাবিল ফাউন্ডেশন | সর্বস্বত্ব সংরক্ষিত</p>
+            <p style="font-size: 12px; margin-top: 5px;">Developed with <i class="fas fa-heart" style="color: #e74c3c;"></i> By Muntashir Al Hera</p>
+        </div>
+    </footer>
+
+    <script>
+        function sendWhatsApp() {
+            const name = document.getElementById('userName').value;
+            const msg = document.getElementById('userMsg').value;
+            const phoneNumber = "8801760908482"; // আপনার দেওয়া নম্বর
+
+            if (name.trim() === "" || msg.trim() === "") {
+                alert("দয়া করে নাম এবং মেসেজ—উভয়ই লিখুন।");
+                return;
+            }
+
+            // মেসেজ ফরম্যাটিং
+            const text = "আসসালামু আলাইকুম,%0Aআমার নাম: " + name + "%0Aমেসেজ: " + msg;
+            const waUrl = "https://wa.me/" + phoneNumber + "?text=" + text;
+
+            // নতুন উইন্ডোতে হোয়াটসঅ্যাপ ওপেন করা
+            window.open(waUrl, '_blank').focus();
+        }
+    </script>
+
+</body>
+    </html>
+    
